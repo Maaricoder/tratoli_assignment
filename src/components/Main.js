@@ -2,6 +2,7 @@ import React from 'react'
 import img from "../components/profile.png"
 import { useEffect, useState } from 'react'
 import axios from 'axios';
+import Loader from './Loader';
 
 function Main() {
     const [pokeData, setPokeData] = useState([]);
@@ -51,14 +52,14 @@ function Main() {
 
             <div className='container-fluid'>
                 <div className='row'>
-                    <div className='col-sm-12 col-md-6 col-lg-6 bg-primaray'>
+                    <div  className='col-sm-12 col-md-6 col-lg-6 bg-primaray '>
 
-                        <div className='row'>
+                        <div className='row gx-5 gy-5'>
 
                             {
-                                loading ? <h1 className='text-center text-2xl mt-5'>Loading.....</h1>
+                                loading ? <Loader></Loader>
                                     : pokeData.map((item) => {
-                                        return <div className='col-sm-12 col-md-12 col-lg-6 cursor-pointer border border-2 ' onClick={() => setPokeDex(item)} >
+                                        return <div className='col-sm-12 col-md-12 col-lg-6  gx-5 cursor-pointer border border-2 ' onClick={() => setPokeDex(item)} >
                                             <div className='flex p-3 justify-around items-center'>
                                                 <h1 className='heading'>{item.id}</h1>
                                                 <img className='h-14' src={item.sprites.front_default}></img>
@@ -75,7 +76,7 @@ function Main() {
                         </div>
 
 
-                        <div className='text-center '>
+                        <div className='text-center fixed bottom-0 left-[220px]'>
                             {prevUrl && <button onClick={() => {
                                 setPokeData([])
                                 setUrl(prevUrl)
